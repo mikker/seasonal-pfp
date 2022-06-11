@@ -1,7 +1,7 @@
 {
   "cron": [
     {
-      "command": "bin/update",
+      "command": "scripts/update",
       "schedule": "@daily"
     }
   ]

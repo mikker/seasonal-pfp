@@ -1,7 +1,6 @@
 #!/bin/bash
 
-ACCESS_TOKEN="635533-VUecgSaOpaYipOtK8LaLMzi7AzArA2p0QELHTpyNElr"
 DIFF=$(( ($(date +%s) - $(date -jf %Y-%m-%d 2022-06-12 +%s) )/(60*60*24) ))
-IMAGE=`base64 public/mikkers/$DIFF.png`
 
-echo curl "https://api.twitter.com/2/account/update_profile_image.json?image=$IMAGE" -X POST -H "Authorization: Bearer $ACCESS_TOKEN"
+bundle exec t set profile_image public/mikkers/$DIFF.png -P .trc
+

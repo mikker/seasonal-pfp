@@ -1,0 +1,13 @@
+name: Daily cron
+on:
+  schedule:
+    - cron: '0 12 * * *'
+jobs:
+  cron:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call update
+        run: |
+          curl --request POST \
+          --url 'https://seasonal-pfp-mikker.vercel.app/api/update?api_key=${{ secrets.API_KEY }}'
+

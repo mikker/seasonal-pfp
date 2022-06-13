@@ -3,9 +3,13 @@ import { TwitterApi } from "twitter-api-v2";
 import { intervalToDuration } from "date-fns";
 
 export default async function handler(
-  _req: NextApiRequest,
+  req: NextApiRequest,
   res: NextApiResponse<any>
 ) {
+  if (req.query.api_key !== process.env.API_KEY!) {
+    return res.status(403).json({ error: 'Unauthorized' })
+  }
+
   const diff = intervalToDuration({
     start: new Date(2022, 5, 11),
     end: new Date(),

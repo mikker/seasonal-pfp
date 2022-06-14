@@ -22,7 +22,7 @@ export default async function handler(
     accessSecret: process.env.TWITTER_ACCESS_TOKEN_SECRET!,
   });
 
-  await userClient.v1.updateAccountProfileImage(`public/mikkers/${diff}.png`)
+  await userClient.v1.updateAccountProfileImage(`./public/mikkers/${diff}.png`)
 
   res.json({ day: diff })
 }

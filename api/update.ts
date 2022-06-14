@@ -1,13 +1,14 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { TwitterApi } from "twitter-api-v2";
 import { intervalToDuration } from "date-fns";
+import path from "path";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<any>
 ) {
   if (req.query.api_key !== process.env.API_KEY!) {
-    return res.status(403).json({ error: 'Unauthorized' })
+    return res.status(403).json({ error: "Unauthorized" });
   }
 
   const diff = intervalToDuration({
@@ -22,7 +23,9 @@ export default async function handler(
     accessSecret: process.env.TWITTER_ACCESS_TOKEN_SECRET!,
   });
 
-  await userClient.v1.updateAccountProfileImage(`./public/mikkers/${diff}.png`)
+  await userClient.v1.updateAccountProfileImage(
+    path.resolve(__dirname, "..", `public`, "mikkers", `${diff}.png`)
+  );
 
-  res.json({ day: diff })
+  res.json({ day: diff });
 }

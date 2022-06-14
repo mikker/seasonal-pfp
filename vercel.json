@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "api/update.ts": {
+      "includeFiles": "_files/mikkers/*.png"
+    }
+  }
+}

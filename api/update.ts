@@ -24,7 +24,7 @@ export default async function handler(
   });
 
   await userClient.v1.updateAccountProfileImage(
-    path.resolve(__dirname, "..", `public`, "mikkers", `${diff}.png`)
+    path.join(process.cwd(), "public", "mikkers", `${diff}.png`)
   );
 
   res.json({ day: diff });

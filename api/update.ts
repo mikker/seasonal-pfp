@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { TwitterApi } from "twitter-api-v2";
-import { intervalToDuration } from "date-fns";
+import { differenceInDays } from "date-fns";
 import path from "path";
 
 export default async function handler(
@@ -11,10 +11,7 @@ export default async function handler(
     return res.status(403).json({ error: "Unauthorized" });
   }
 
-  const diff = intervalToDuration({
-    start: new Date(2022, 5, 11),
-    end: new Date(),
-  }).days;
+  const diff = differenceInDays(new Date(), new Date(2022, 5, 11));
 
   const userClient = new TwitterApi({
     appKey: process.env.TWITTER_CONSUMER_KEY!,

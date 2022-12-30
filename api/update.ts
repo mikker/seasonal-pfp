@@ -11,7 +11,12 @@ export default async function handler(
     return res.status(403).json({ error: "Unauthorized" });
   }
 
-  const diff = differenceInDays(new Date(), new Date(2022, 5, 11)).toString().padStart(3, '0');
+  const diff = Math.max(
+    0,
+    Math.min(199, differenceInDays(new Date(), new Date(2022, 5, 11)))
+  )
+    .toString()
+    .padStart(3, "0");
 
   const userClient = new TwitterApi({
     appKey: process.env.TWITTER_CONSUMER_KEY!,
